@@ -1,3 +1,3 @@
 # angular-select-group
-###Demo
+### Demo
 https://spring-fe.github.io/angular-select-group/
