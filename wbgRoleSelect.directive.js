@@ -15,15 +15,26 @@
  			template: '\
  			<div class="wbg-role-select">\
  				<div class="wbg-select-tags" ng-click="fn.dropdownShow()">\
- 				<div ng-if="data.hasdisabled" class="wbg-select-disabled"></div>\
- 				<span ng-if="data.multiple==1 && data.selectItems.length!=0" class="tags-multiple"\
- 				ng-repeat="item in data.selectItems">{{item.role}}\
- 				  <i class="item-rm" ng-click="fn.itemRemove(item, $event)"></i>\
- 				</span>\
- 				<span ng-if="data.multiple==0 && data.selectItems" class="tags-no-multiple text-cut tags-single">{{data.selectItems}}</span>\
-	    		<span ng-if="!(data.multiple==1 && data.selectItems.length!=0 || data.multiple==0 && data.selectItems)" class="tags-no-multiple wbg-txt hint">请选择审批角色</span>\
-	    		<i class="wbg-icon-font wbg-icon-drop-down-12px icon-s12 drop-down-arrow"></i>\
- 				<div>\
+	 				<div ng-if="data.hasdisabled" class="wbg-select-disabled"></div>\
+	 				<span ng-if="data.multiple==1 && data.selectItems.length!=0" class="tags-multiple"\
+	 				ng-repeat="item in data.selectItems">{{item.role}}\
+	 				  <i class="item-rm" ng-click="fn.itemRemove(item, $event)"></i>\
+	 				</span>\
+	 				<span ng-if="data.multiple==0 && data.selectItems" class="tags-no-multiple text-cut tags-single">{{data.selectItems}}</span>\
+		    		<span ng-if="!(data.multiple==1 && data.selectItems.length!=0 || data.multiple==0 && data.selectItems)" class="tags-no-multiple wbg-txt hint">请选择审批角色</span>\
+		    		<i class="wbg-icon-font wbg-icon-drop-down-12px icon-s12 drop-down-arrow"></i>\
+ 				</div>\
+ 				<div class="wbg-select-dropdown" ng-if="data.showDropdown">\
+ 					<div class="wbg-role-wrap">\
+	 					<ul class="wbg-role-list">\
+	 						<li class="wbg-role-group" ng-repeat="item in data.allRoleG">\
+	 						<h6 ng-bind="item.name" ng-click="fn.roleGroupItemClick(item)"></h6>\
+	 						<ul ng-if="!item.showRoleItem" class="wbg-role-item-wrap">\
+	 							<li class="wbg-role-item" ng-click="fn.roleItemClick(subitem)" ng-repeat="subitem in item.roleDetails" ng-class="{'+'selected'+':subitem.selected}">\
+	 							{{subitem.name}}</li>\
+	 					<ul>\
+ 					</div>\
+ 				</div>\
  			<div>',
  			scope: {
  				allItems: '=allItems',
@@ -119,6 +130,7 @@
  				}
  				var _bindEvent = function () {
  					angular.element('body').on('click', function ($event) {
+ 						
  						var $target = angular.element($event.target);
  						if ($target.closest('.wbg-role-select .wbg-select-tags').length == 0 && $target.closest('.wbg-role-select .wbg-select-dropdown').length == 0) {
  							scope.$apply(function () {
@@ -172,7 +184,6 @@
  				}
  				
  				fn.dropdownShow = function () {
- 					alert(2)
  					if (data.hasdisabled) return;
  					data.showDropdown = !data.showDropdown;
  				}
@@ -234,4 +245,3 @@
  			}
  		}
  	}])
-console.log(angular.module("App"));

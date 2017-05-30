@@ -1,3 +1,12 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+li{
+    list-style: none;
+}
 .text-cut {
     white-space: nowrap;
     overflow: hidden;
@@ -91,6 +100,7 @@
 }
 
 .wbg-role-select .wbg-select-dropdown {
+    font-size: 12px;
     position: absolute;
     max-height: 220px;
     width: 100%;
@@ -118,6 +128,7 @@
 	padding-left: 28px;
 }
 .wbg-role-select .wbg-select-dropdown h6 {
+    font-size: 12px;
 	padding-left: 8px;
 	line-height: 30px;
 	font-weight: normal;

@@ -5,21 +5,31 @@
 		<title>下拉框</title>
 		<style type="text/css">
 		    body{
-		    	padding: 100px;
+		    	padding: 50px;
 		    }
-			span{
-				display: inline-block;
-				width: 150px;
-				height: 38px;
-				line-height: 38px;
-				background: #50c124;
-				font-size: 16px;
-				text-align: center;
-				color: white;
-				border-radius: 2px;
-				-webkit-border-radius: 2px;
-				cursor: pointer;
-			}
+		    .mode {
+		    	background: #46a946;
+		    	padding: 4px;
+		    	display: inline-block;
+		    	border-radius: 4px;
+		    	color: white;
+		    	font-size: 12px;
+		    	cursor: pointer;
+		    }
+		    .operate {
+		    	margin-top: 20px;
+		    }
+		    h2 {
+		    	margin-bottom: 30px;
+		    }
+		    h3 {
+		    	margin-bottom: 16px;
+		    }
+		    .demo {
+		    	border: 1px solid #ede7e7;
+		    	padding: 20px;
+		    	margin-bottom: 20px;
+		    }
 		</style>
 		<link rel="stylesheet" type="text/css" href="wbg.role.select.css"/>
 		<script type="text/javascript" src="lib/jquery.js"></script>
@@ -28,29 +38,53 @@
 			angular.module("App",[]).controller("RoleController", RoleController);
 			function RoleController() {
 				this.ids = [122, 131];
+				this.demo2_ids = 131;
 				this.isDisabled = {value:0};
-				this.name ='zhang'
+				this.switchMode = function () {
+					if (this.isDisabled.value == 0){
+						this.isDisabled.value = 1;
+					} else {
+						this.isDisabled.value = 0;
+					}
+				}
 			}
-			$(document).ready(function () {
-				$("span").on("click", function () {
-					
-				})
-			}) 
 		</script>
 		<script type="text/javascript" src="wbgRoleSelect.directive.js"></script>
 		
 	</head>
 	<body ng-app="App">
-		<span id="preview">点击预览图片</span>
-		<div class="approval-handler-item" ng-controller="RoleController as role">
-			<input ng-model="role.name">
-            <div class="approval-handler"
-                 ng-model="role.ids"
-                 data-multiple='1'
-                 data-isdisabled="role.isDisabled"
-                 wbg-role-select>
-            </div>
-        </div>
+		<h2>Demo</h2>
+		<div class="demo demo1">
+			<h3>Demo1</h3>
+			<div ng-controller="RoleController as role">
+				<div>
+		             
+		            <div ng-model="role.ids"
+		                 data-multiple='1'
+		                 data-isdisabled="role.isDisabled"
+		                 wbg-role-select>
+		            </div>
+		        </div>
+		        <div class="operate">
+		        	<span ng-click="role.switchMode()" class="mode">切换开启/禁用模式</span>
+		        </div>
+			</div>
+		</div>
+		<div class="demo demo2">
+			<h3>Demo2</h3>
+			<div ng-controller="RoleController as role">
+				<div>
+		           
+		            <div ng-model="role.demo2_ids"
+		                 data-multiple='0'
+		                 data-isdisabled="role.isDisabled"
+		                 wbg-role-select>
+		            </div>
+		        </div>
+		        <div class="operate">
+		        	<span ng-click="role.switchMode()" class="mode">切换开启/禁用模式</span>
+		        </div>
+			</div>
+		</div>
 	</body>
-	
 </html>
