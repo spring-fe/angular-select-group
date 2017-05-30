@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>下拉框</title>
+		<style type="text/css">
+		    body{
+		    	padding: 100px;
+		    }
+			span{
+				display: inline-block;
+				width: 150px;
+				height: 38px;
+				line-height: 38px;
+				background: #50c124;
+				font-size: 16px;
+				text-align: center;
+				color: white;
+				border-radius: 2px;
+				-webkit-border-radius: 2px;
+				cursor: pointer;
+			}
+		</style>
+		<link rel="stylesheet" type="text/css" href="wbg.role.select.css"/>
+		<script type="text/javascript" src="lib/jquery.js"></script>
+		<script type="text/javascript" src="lib/angular.js"></script>
+		<script>
+			angular.module("App",[]).controller("RoleController", RoleController);
+			function RoleController() {
+				this.ids = [122, 131];
+				this.isDisabled = {value:0};
+				this.name ='zhang'
+			}
+			$(document).ready(function () {
+				$("span").on("click", function () {
+					
+				})
+			}) 
+		</script>
+		<script type="text/javascript" src="wbgRoleSelect.directive.js"></script>
+		
+	</head>
+	<body ng-app="App">
+		<span id="preview">点击预览图片</span>
+		<div class="approval-handler-item" ng-controller="RoleController as role">
+			<input ng-model="role.name">
+            <div class="approval-handler"
+                 ng-model="role.ids"
+                 data-multiple='1'
+                 data-isdisabled="role.isDisabled"
+                 wbg-role-select>
+            </div>
+        </div>
+	</body>
+	
+</html>
